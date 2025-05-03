@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kuisioner Ulang Tahun Faiqah & Yasvika</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff0f5;
+      color: #4b2e2e;
+      text-align: center;
+      padding: 30px;
+      background-image: url('https://www.transparenttextures.com/patterns/flowers.png');
+    }
+    .box {
+      background: #fff;
+      border: 2px dashed #d896a1;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 192, 203, 0.3);
+    }
+    h1 {
+      color: #b03060;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #b03060;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="slide-1">
+    <h1>nama u?</h1>
+    <form id="form-1" onsubmit="nextSlide(event, 'slide-1', 'slide-2')">
+      <input type="text" id="nama" placeholder="Nama kamu" required><br>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+
+  <div class="box hidden" id="slide-2">
+    <h1>Tau Gak Mo Ngapain?</h1>
+    <form id="form-2" onsubmit="nextSlide(event, 'slide-2', 'slide-3')">
+      <select id="tau" required>
+        <option value="">Pilih dulu</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select><br>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+
+  <div class="box hidden" id="slide-3">
+    <h1>Emang ngapain 🤨?</h1>
+    <form id="form-3" onsubmit="nextSlide(event, 'slide-3', 'slide-4')">
+      <input type="text" id="apa" placeholder="Jawab apa?" required><br>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+
+  <div class="box hidden" id="slide-4">
+    <h1>You're Invited! aw aw </h1>
+    <h2>Faiqah & Yasvika's 17th Birthday</h2>
+    <p>
+      Sabtu, 10 Mei 2025<br>
+      Pukul 16.00 WIB<br>
+      Tempat: cafe<br><br>
+      Dress code: <strong>anak ayam pasar modern jgn hitem loh rek</strong> 🌸🌷💐
+    </p>
+    <p id="personal-msg"></p>
+    <div class="footer">
+      Desain by fai | Undangan Digital
+    </div>
+  </div>
+
+  <script>
+    // Fungsi untuk berpindah slide dan mengecek logika
+    function nextSlide(event, currentSlide, nextSlide) {
+      event.preventDefault();
+
+      const nama = document.getElementById('nama').value;
+      const tau = document.getElementById('tau') ? document.getElementById('tau').value : null;
+      const apa = document.getElementById('apa') ? document.getElementById('apa').value : null;
+
+      // Menyembunyikan slide yang sedang ditampilkan
+      document.getElementById(currentSlide).classList.add('hidden');
+
+      // Menampilkan slide berikutnya
+      document.getElementById(nextSlide).classList.remove('hidden');
+
+      // Jika sudah di slide 3 dan jawabannya "yes", ambil jawaban dari form sebelumnya
+      if (nextSlide === 'slide-4') {
+        let pesan = "";
+        if (tau === "yes") {
+          pesan = `yeu sotoy: dateng loh awas aja!, ${nama}! 🎉`;
+        } else {
+          pesan = `moso gaktau 👎 bawa kado loh gtw mah (canda tp bnrn jg boleh 🤪), dateng loh ya awas aja!, ${nama} 😄`;
+        }
+        document.getElementById('personal-msg').textContent = pesan;
+      }
+    }
+  </script>
+</body>
+</html>
